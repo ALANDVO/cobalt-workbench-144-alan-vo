@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "name": "cobalt-workbench-144-alan-vo",
+  "owner": "ALANDVO",
+  "email": "alanvo@gmail.com",
+  "domain": "AI/ML developer tools",
+  "summary": "Work in progress: cobalt-workbench-144-alan-vo",
+  "workflows": [
+    "Create and manage cross-platform sandboxes (lume VMs, Docker containers) for agent execution",
+    "Run benchmark suites against computer-use agents with timing, screenshots, and action traces",
+    "Generate labeled training datasets from recorded agent trajectories"
+  ],
+  "auth": "oidc-keycloak-saml-broker",
+  "llm_providers": [
+    "openai-compatible",
+    "anthropic",
+    "gemini",
+    "ollama"
+  ],
+  "status": "work-in-progress"
+}

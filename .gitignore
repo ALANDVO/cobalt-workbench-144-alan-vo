@@ -1,0 +1,49 @@
+# .gitignore
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.coverage
+htmlcov/
+*.db
+*.sqlite
+*.sqlite3
+
+# Node
+node_modules/
+dist/
+build/
+*.log
+npm-debug.log*
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker
+.docker/
+
+# Local agent metadata (not product source)
+.antigravitycli/
+.omp/
+
+# Test artifacts
+coverage/
+.nyc_output/
+
+# Build
+*.egg-info/
+dist/

@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "current_feature": "skeleton-fastapi-react",
+  "features": [
+    {
+      "id": "skeleton-fastapi-react",
+      "title": "FastAPI + React skeleton with health check and basic UI",
+      "status": "done",
+      "acceptance": [
+        "FastAPI backend starts and serves /health endpoint",
+        "React + Vite frontend builds and loads",
+        "Frontend displays backend health status",
+        "Docker compose brings up both services",
+        "Backend tests pass (pytest)",
+        "Frontend tests pass (vitest)"
+      ],
+      "implementation": [
+        "backend/app/main.py",
+        "backend/app/api/health.py",
+        "backend/requirements.txt",
+        "backend/tests/test_health.py",
+        "frontend/package.json",
+        "frontend/vite.config.ts",
+        "frontend/src/main.tsx",
+        "frontend/src/App.tsx",
+        "frontend/src/api/client.ts",
+        "frontend/tests/App.test.tsx",
+        "compose.yaml",
+        "Dockerfile.backend",
+        "Dockerfile.frontend",
+        ".env.example",
+        "README.md",
+        "pyproject.toml"
+      ],
+      "tests": [
+        "backend/tests/test_health.py",
+        "frontend/tests/App.test.tsx"
+      ]
+    },
+    {
+      "id": "sandbox-orchestration",
+      "title": "Cross-OS sandbox orchestration (lume + Docker drivers)",
+      "status": "planned",
+      "acceptance": [
+        "API to create/start/stop/destroy sandboxes",
+        "Driver abstraction for lume VMs and Docker containers",
+        "ARM64 (Apple Silicon) compatible Docker image handling",
+        "Sandbox state persistence (SQLite)"
+      ],
+      "implementation": [],
+      "tests": []
+    },
+    {
+      "id": "benchmark-runner",
+      "title": "Benchmark runner for computer-use evaluation",
+      "status": "planned",
+      "acceptance": [
+        "Define benchmark tasks (JSON/YAML)",
+        "Execute tasks in sandboxes with timing/metrics",
+        "Collect screenshots, action traces, outcomes",
+        "Export results (JSON/CSV)"
+      ],
+      "implementation": [],
+      "tests": []
+    },
+    {
+      "id": "auth-oidc-keycloak",
+      "title": "OIDC authentication with Keycloak (SAML broker ready)",
+      "status": "planned",
+      "acceptance": [
+        "Keycloak realm import",
+        "Backend session auth with HttpOnly cookies + CSRF",
+        "Frontend login/logout flow",
+        "Role-based access (viewer/operator/admin)"
+      ],
+      "implementation": [],
+      "tests": []
+    },
+    {
+      "id": "llm-adapters",
+      "title": "LLM provider adapters (OpenAI-compatible, Anthropic, Gemini, Ollama)",
+      "status": "planned",
+      "acceptance": [
+        "Unified adapter interface",
+        "Configurable provider/model/endpoint",
+        "Server-side keys only",
+        "Bounded timeouts, redacted errors"
+      ],
+      "implementation": [],
+      "tests": []
+    },
+    {
+      "id": "data-generation",
+      "title": "Training data generation workflow",
+      "status": "planned",
+      "acceptance": [
+        "Record action sequences with screenshots",
+        "Export labeled trajectories",
+        "Filter/validate dataset quality"
+      ],
+      "implementation": [],
+      "tests": []
+    }
+  ]
+}
