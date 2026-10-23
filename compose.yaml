@@ -1,0 +1,68 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    container_name: cobalt-workbench-backend
+    ports:
+      - "127.0.0.1:8000:8000"
+    environment:
+      - ENVIRONMENT=development
+      - DATABASE_URL=sqlite+aiosqlite:///./data/app.db
+      - DEMO_MODE=true
+      - CORS_ORIGINS=["http://127.0.0.1:5173","http://localhost:5173"]
+    volumes:
+      - backend-data:/app/data
+    healthcheck:
+      test: ["CMD", "python", "-c", "import httpx; httpx.get('http://127.0.0.1:8000/api/v1/health', timeout=3.0)"]
+      interval: 30s
+      timeout: 5s
+      start_period: 10s
+      retries: 3
+    networks:
+      - cobalt-network
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    container_name: cobalt-workbench-frontend
+    ports:
+      - "127.0.0.1:8080:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+    networks:
+      - cobalt-network
+
+  # Keycloak for OIDC authentication (placeholder for future auth feature)
+  keycloak:
+    image: quay.io/keycloak/keycloak:26.0
+    container_name: cobalt-workbench-keycloak
+    command: start-dev --import-realm
+    environment:
+      - KC_BOOTSTRAP_ADMIN_USERNAME=admin
+      - KC_BOOTSTRAP_ADMIN_PASSWORD=admin
+    ports:
+      - "127.0.0.1:8081:8080"
+    volumes:
+      - keycloak-data:/opt/keycloak/data
+      - ./keycloak/realm-export.json:/opt/keycloak/data/import/realm-export.json:ro
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://127.0.0.1:8080/health/ready"]
+      interval: 30s
+      timeout: 10s
+      start_period: 30s
+      retries: 5
+    networks:
+      - cobalt-network
+    profiles:
+      - auth
+
+volumes:
+  backend-data:
+  keycloak-data:
+
+networks:
+  cobalt-network:
+    driver: bridge
