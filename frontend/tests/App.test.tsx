@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest';
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen, waitFor, act } from '@testing-library/react';
 import App from '../src/App';
 import { fetchHealth, HealthResponse } from '../src/api/client';
 
@@ -14,12 +14,21 @@ describe('App', () => {
     vi.resetAllMocks();
   });
 
-  it('shows loading state initially', () => {
+  it('shows loading state initially', async () => {
     const { promise, resolve } = Promise.withResolvers<HealthResponse>();
     mockFetchHealth.mockReturnValue(promise);
-    render(<App />);
+    
+    await act(async () => {
+      render(<App />);
+      await Promise.resolve();
+    });
+    
     expect(screen.getByText('Connecting to backend...')).toBeInTheDocument();
-    resolve({ status: 'healthy', version: '1.0.0', timestamp: '2025-01-15T10:30:00Z' });
+    
+    await act(async () => {
+      resolve({ status: 'healthy', version: '1.0.0', timestamp: '2025-01-15T10:30:00Z' });
+      await promise;
+    });
   });
 
   it('displays health data when fetch succeeds', async () => {
@@ -30,7 +39,10 @@ describe('App', () => {
     };
     mockFetchHealth.mockResolvedValue(mockHealth);
     
-    render(<App />);
+    await act(async () => {
+      render(<App />);
+      await Promise.resolve();
+    });
     
     await waitFor(() => {
       expect(screen.getByText('System Health')).toBeInTheDocument();
@@ -43,7 +55,10 @@ describe('App', () => {
   it('displays error when fetch fails', async () => {
     mockFetchHealth.mockRejectedValue(new Error('Connection refused'));
     
-    render(<App />);
+    await act(async () => {
+      render(<App />);
+      await Promise.resolve();
+    });
     
     await waitFor(() => {
       expect(screen.getByText(/Error:/)).toBeInTheDocument();
