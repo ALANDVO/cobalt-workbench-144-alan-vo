@@ -17,6 +17,7 @@
       "implementation": [
         "backend/app/main.py",
         "backend/app/api/health.py",
+        "backend/app/core/config.py",
         "backend/requirements.txt",
         "backend/tests/test_health.py",
         "frontend/package.json",

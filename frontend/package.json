@@ -2,7 +2,11 @@
   "name": "cobalt-workbench-frontend",
   "version": "1.0.0",
   "description": "Cobalt Workbench - AI/ML developer tools for computer-use evaluation",
-  "author": "Alan Vo <alanvo@gmail.com>",
+  "author": {
+    "name": "Alan Vo",
+    "email": "alanvo@gmail.com",
+    "url": "https://github.com/ALANDVO"
+  },
   "license": "MIT",
   "type": "module",
   "scripts": {

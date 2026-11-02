@@ -20,7 +20,7 @@ Acceptance:
 - Backend tests pass (pytest)
 - Frontend tests pass (vitest)
 
-Implementation: `backend/app/main.py`, `backend/app/api/health.py`, `backend/requirements.txt`, `backend/tests/test_health.py`, `frontend/package.json`, `frontend/vite.config.ts`, `frontend/src/main.tsx`, `frontend/src/App.tsx`, `frontend/src/api/client.ts`, `frontend/tests/App.test.tsx`, `compose.yaml`, `Dockerfile.backend`, `Dockerfile.frontend`, `.env.example`, `README.md`, `pyproject.toml`
+Implementation: `backend/app/main.py`, `backend/app/api/health.py`, `backend/app/core/config.py`, `backend/requirements.txt`, `backend/tests/test_health.py`, `frontend/package.json`, `frontend/vite.config.ts`, `frontend/src/main.tsx`, `frontend/src/App.tsx`, `frontend/src/api/client.ts`, `frontend/tests/App.test.tsx`, `compose.yaml`, `Dockerfile.backend`, `Dockerfile.frontend`, `.env.example`, `README.md`, `pyproject.toml`
 
 Tests: `backend/tests/test_health.py`, `frontend/tests/App.test.tsx`
 
