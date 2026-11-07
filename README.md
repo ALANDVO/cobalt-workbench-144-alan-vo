@@ -216,3 +216,7 @@ Cobalt Workbench includes a reproducible benchmark harness for evaluating comput
 ## License
 
 MIT License — Copyright © 2025 Alan Vo <alanvo@gmail.com>
+
+---
+
+Alan Vo · [alanvo.net](https://alanvo.net)

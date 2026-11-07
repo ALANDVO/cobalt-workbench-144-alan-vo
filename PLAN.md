@@ -73,3 +73,6 @@ Acceptance:
 - Export labeled trajectories
 - Filter/validate dataset quality
 
+---
+
+Alan Vo · [alanvo.net](https://alanvo.net)
