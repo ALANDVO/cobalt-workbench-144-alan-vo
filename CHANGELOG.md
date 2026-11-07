@@ -1,8 +1,18 @@
 # Changelog
 
-## 1.1.0 — work-in-progress checkpoint
+## 1.2.0 — work-in-progress checkpoint
 
 Partial code published for continued development. Known issues: STATUS.md.
+
+## 1.1.0 — work-in-progress checkpoint
+
+### Fixed
+- Backend mypy type errors: `SettingsConfigDict` for pydantic-settings v2, return type annotations for `health_check()` and `lifespan()`
+- Frontend ESLint configuration with TypeScript, React, and React Hooks support
+
+### Verified
+- Backend: pytest, ruff, mypy all pass
+- Frontend: vitest, eslint, tsc, vite build all pass
 
 ## 1.0.0 — work-in-progress checkpoint
 
