@@ -1,4 +1,5 @@
 from contextlib import asynccontextmanager
+from collections.abc import AsyncIterator
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -7,11 +8,10 @@ from app.core.config import settings
 
 
 @asynccontextmanager
-async def lifespan(app: FastAPI):
+async def lifespan(app: FastAPI) -> AsyncIterator[None]:
     # Startup: initialize DB, connections, etc.
     yield
     # Shutdown: cleanup
-
 
 def create_app() -> FastAPI:
     app = FastAPI(
