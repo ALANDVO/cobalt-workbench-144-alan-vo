@@ -219,4 +219,4 @@ MIT License — Copyright © 2025 Alan Vo <alanvo@gmail.com>
 
 ---
 
-Alan Vo · [alanvo.net](https://alanvo.net)
+Alan Vo · [alanvo.net](https://alanvo.net) · [X: @alanvoasi](https://x.com/alanvoasi)
