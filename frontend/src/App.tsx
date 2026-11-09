@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
-import { fetchHealth, HealthResponse } from './api/client';
+import { fetchHealth, fetchReady, HealthResponse, ReadyResponse } from './api/client';
 
 function App() {
   const [health, setHealth] = useState<HealthResponse | null>(null);
+  const [ready, setReady] = useState<ReadyResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -28,10 +29,27 @@ function App() {
       }
     }
 
+    async function loadReady() {
+      try {
+        const data = await fetchReady();
+        if (mounted) {
+          setReady(data);
+        }
+      } catch (err) {
+        if (mounted) {
+          setReady({ status: 'not-ready', timestamp: new Date().toISOString() });
+        }
+      }
+    }
+
     loadHealth();
+    loadReady();
     
     // Refresh every 30 seconds
-    const interval = setInterval(loadHealth, 30000);
+    const interval = setInterval(() => {
+      loadHealth();
+      loadReady();
+    }, 30000);
     
     return () => {
       mounted = false;
@@ -87,9 +105,35 @@ function App() {
                 <div className="status-label">Timestamp</div>
                 <div className="status-value">{new Date(health.timestamp).toLocaleString()}</div>
               </div>
+              <div className="status-item">
+                <div className="status-label">Uptime</div>
+                <div className="status-value">{formatUptime(health.uptime_seconds)}</div>
+              </div>
+              <div className="status-item">
+                <div className="status-label">Environment</div>
+                <div className="status-value">{health.environment}</div>
+              </div>
             </div>
           )}
         </section>
+
+        {ready && (
+          <section className="card" style={{ marginTop: '1rem' }}>
+            <h2 className="card-title">Readiness</h2>
+            <div className="status-grid">
+              <div className="status-item">
+                <div className="status-label">Status</div>
+                <div className={`status-value ${ready.status === 'ready' ? 'healthy' : 'unhealthy'}`}>
+                  {ready.status}
+                </div>
+              </div>
+              <div className="status-item">
+                <div className="status-label">Checked</div>
+                <div className="status-value">{new Date(ready.timestamp).toLocaleString()}</div>
+              </div>
+            </div>
+          </section>
+        )}
 
         <section className="card" style={{ marginTop: '1.5rem' }}>
           <h2 className="card-title">About</h2>
@@ -112,6 +156,14 @@ function App() {
       </footer>
     </div>
   );
+}
+
+function formatUptime(seconds: number): string {
+  if (seconds < 60) return `${seconds.toFixed(1)}s`;
+  if (seconds < 3600) return `${Math.floor(seconds / 60)}m ${Math.floor(seconds % 60)}s`;
+  const hours = Math.floor(seconds / 3600);
+  const minutes = Math.floor((seconds % 3600) / 60);
+  return `${hours}h ${minutes}m`;
 }
 
 export default App;

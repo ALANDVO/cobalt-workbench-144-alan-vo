@@ -96,16 +96,33 @@ graph TB
 ```
 GET /api/v1/health
 ```
-Returns service health status.
+Returns service health status with uptime and environment info.
 
 **Response:**
 ```json
 {
   "status": "healthy",
   "version": "1.0.0",
+  "timestamp": "2025-01-15T10:30:00Z",
+  "uptime_seconds": 123.45,
+  "environment": "development"
+}
+```
+
+### Readiness Check
+```
+GET /api/v1/ready
+```
+Returns service readiness for Kubernetes probes.
+
+**Response:**
+```json
+{
+  "status": "ready",
   "timestamp": "2025-01-15T10:30:00Z"
 }
 ```
+
 
 ## Configuration
 

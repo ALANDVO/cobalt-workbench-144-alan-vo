@@ -19,6 +19,9 @@ Acceptance:
 - Docker compose brings up both services
 - Backend tests pass (pytest)
 - Frontend tests pass (vitest)
+- Health endpoint returns uptime_seconds and environment fields
+- Readiness endpoint (/api/v1/ready) available for Kubernetes probes
+- Frontend displays uptime, environment, and readiness status
 
 Implementation: `backend/app/main.py`, `backend/app/api/health.py`, `backend/app/core/config.py`, `backend/requirements.txt`, `backend/tests/test_health.py`, `frontend/package.json`, `frontend/vite.config.ts`, `frontend/src/main.tsx`, `frontend/src/App.tsx`, `frontend/src/api/client.ts`, `frontend/tests/App.test.tsx`, `compose.yaml`, `Dockerfile.backend`, `Dockerfile.frontend`, `.env.example`, `README.md`, `pyproject.toml`
 
