@@ -1,8 +1,20 @@
 # Changelog
 
-## 1.2.0 — work-in-progress checkpoint
+## 1.3.0 — work-in-progress checkpoint
 
 Partial code published for continued development. Known issues: STATUS.md.
+
+## 1.2.0 — work-in-progress checkpoint
+
+### Added
+- Enhanced health check endpoint (`/api/v1/health`) with uptime and environment fields
+- Readiness probe endpoint (`/api/v1/ready`) for Kubernetes liveness/readiness checks
+- Frontend displays uptime, environment, and readiness status
+- Updated backend and frontend tests for new endpoints
+
+### Verified
+- Backend: pytest (4 tests) pass
+- Frontend: vitest (5 tests) pass
 
 ## 1.1.0 — work-in-progress checkpoint
 

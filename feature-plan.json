@@ -12,7 +12,10 @@
         "Frontend displays backend health status",
         "Docker compose brings up both services",
         "Backend tests pass (pytest)",
-        "Frontend tests pass (vitest)"
+        "Frontend tests pass (vitest)",
+        "Health endpoint returns uptime_seconds and environment fields",
+        "Readiness endpoint (/api/v1/ready) available for Kubernetes probes",
+        "Frontend displays uptime, environment, and readiness status"
       ],
       "implementation": [
         "backend/app/main.py",
