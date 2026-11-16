@@ -3,7 +3,7 @@ from collections.abc import AsyncIterator
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.api import health
+from app.api import health, sandbox
 from app.core.config import settings
 
 
@@ -12,6 +12,7 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
     # Startup: initialize DB, connections, etc.
     yield
     # Shutdown: cleanup
+
 
 def create_app() -> FastAPI:
     app = FastAPI(
@@ -30,6 +31,7 @@ def create_app() -> FastAPI:
     )
 
     app.include_router(health.router, prefix="/api/v1")
+    app.include_router(sandbox.router, prefix="/api/v1")
 
     return app
 
