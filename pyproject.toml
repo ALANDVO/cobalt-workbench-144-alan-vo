@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "cobalt-workbench"
-version = "1.4.0"
+version = "1.5.0"
 description = "Scale computer-use 2.0 with open-source drivers, cross-OS sandboxes, and benchmarks for training, evaluation, and data generation."
 readme = "README.md"
 license = {text = "MIT"}
