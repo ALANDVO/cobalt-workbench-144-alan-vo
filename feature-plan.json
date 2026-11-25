@@ -44,15 +44,20 @@
     {
       "id": "sandbox-orchestration",
       "title": "Cross-OS sandbox orchestration (lume + Docker drivers)",
-      "status": "planned",
+      "status": "in_progress",
       "acceptance": [
         "API to create/start/stop/destroy sandboxes",
         "Driver abstraction for lume VMs and Docker containers",
         "ARM64 (Apple Silicon) compatible Docker image handling",
         "Sandbox state persistence (SQLite)"
       ],
-      "implementation": [],
-      "tests": []
+      "implementation": [
+        "backend/app/core/drivers/docker.py",
+        "backend/app/api/sandbox.py"
+      ],
+      "tests": [
+        "backend/tests/sandbox_test.py"
+      ]
     },
     {
       "id": "benchmark-runner",

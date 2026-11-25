@@ -29,13 +29,17 @@ Tests: `backend/tests/test_health.py`, `frontend/tests/App.test.tsx`
 
 ### sandbox-orchestration — Cross-OS sandbox orchestration (lume + Docker drivers)
 
-Status: planned
+Status: in_progress
 
 Acceptance:
 - API to create/start/stop/destroy sandboxes
 - Driver abstraction for lume VMs and Docker containers
 - ARM64 (Apple Silicon) compatible Docker image handling
 - Sandbox state persistence (SQLite)
+
+Implementation: `backend/app/core/drivers/docker.py`, `backend/app/api/sandbox.py`
+
+Tests: `backend/tests/sandbox_test.py`
 
 ### benchmark-runner — Benchmark runner for computer-use evaluation
 
