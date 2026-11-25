@@ -1,3 +1,4 @@
+import json
 from typing import Dict, Any, Optional, List
 import uuid
 import sqlite3
@@ -56,9 +57,10 @@ class DockerDriver(SandboxDriver):
     def create(self, name: Optional[str] = None, config: Optional[Dict[str, Any]] = None) -> Sandbox:
         sandbox = self._make_sandbox(name, config)
         conn = self._get_conn()
+        config_json = json.dumps(sandbox.config) if sandbox.config is not None else None
         conn.execute(
             "INSERT INTO sandboxes (id, name, driver, status, config, created_at) VALUES (?, ?, ?, ?, ?, ?)",
-            (sandbox.id, sandbox.name, sandbox.driver, sandbox.status, sandbox.config, sandbox.created_at),
+            (sandbox.id, sandbox.name, sandbox.driver, sandbox.status, config_json, sandbox.created_at),
         )
         conn.commit()
         conn.close()
@@ -153,12 +155,13 @@ class DockerDriver(SandboxDriver):
         conn.close()
         if not row:
             return None
+        config = json.loads(row["config"]) if row["config"] is not None else None
         sandbox = Sandbox(
             id=row["id"],
             name=row["name"],
             driver=row["driver"],
             status=row["status"],
-            config=row["config"],
+            config=config,
             created_at=row["created_at"],
         )
         self._sandboxes[sandbox_id] = sandbox
@@ -174,7 +177,7 @@ class DockerDriver(SandboxDriver):
                 name=row["name"],
                 driver=row["driver"],
                 status=row["status"],
-                config=row["config"],
+                config=json.loads(row["config"]) if row["config"] is not None else None,
                 created_at=row["created_at"],
             )
             for row in rows
